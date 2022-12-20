@@ -124,7 +124,7 @@ function GetControlLayout(props)
     table.insert(graphics,{
       Type="Image",
       Image=Logo,
-      Position={15,10},
+      Position={0, 10},
       Size={200,35}
     })
     table.insert(graphics,{
@@ -132,21 +132,39 @@ function GetControlLayout(props)
       Text = "Toggle",
       FontSize = 32,
       HTextAlign = "Center",
-      Position = {280, 10},
-      Size = {120, 35}
+      Position = {0, 45},
+      Size = {105, 35}
+    })
+    table.insert(graphics,{
+      Type="Image",
+      Image=Triangle,
+      Position={105, 45},
+      Size={35,35}
+    })
+    table.insert(graphics,{
+      Type="Image",
+      Image=Triangle,
+      Position={140,45},
+      Size={35,35}
+    })
+    table.insert(graphics,{
+      Type="Image",
+      Image=Triangle,
+      Position={175,45},
+      Size={35,35}
     })
     layout["Status"] = {
       PrettyName = string.format("Status"),
       Style = "Status",
-      Position = {15,45},
-      Size = {200, 35}
+      Position = {230, 10},
+      Size = {170, 35}
     }
     table.insert(graphics,{
       Type = "Text",
       Text = "FW:",
       FontSize = 22,
       HTextAlign = "Center",
-      Position = {15, 80},
+      Position = {230, 45},
       Size = {55, 35}
     })
     layout["system.fwversion"] = {
@@ -156,27 +174,9 @@ function GetControlLayout(props)
       HTextAlign = "Center",
       Padding = 0,
       StrokeWidth = 0,
-      Position = {70, 80},
-      Size = {145, 35}
+      Position = {285, 45},
+      Size = {115, 35}
     }
-    table.insert(graphics,{
-      Type="Image",
-      Image=Triangle,
-      Position={280,45},
-      Size={35,35}
-    })
-    table.insert(graphics,{
-      Type="Image",
-      Image=Triangle,
-      Position={323,45},
-      Size={35,35}
-    })
-    table.insert(graphics,{
-      Type="Image",
-      Image=Triangle,
-      Position={365,45},
-      Size={35,35}
-    })
     layout["select.off"] = {
       PrettyName = "Select~Off",
       Legend = "Off",
@@ -296,7 +296,7 @@ if Controls then
   
   -- Helper Functions
   function SendData(dataToSend)
-    print("Connection IsOpen: "..tostring(connection.IsOpen))
+    -- Fault if Serial Port is not working
     if connection.IsOpen then
       internalStatus["plugin"] = {
         status = 0,
@@ -307,17 +307,16 @@ if Controls then
         status = 2,
         reason = "Serial Port Not Open"
       }
+      -- Attempt to open Serial Port
       connection:Open( 9600, 8, "N")
     end
-    print("RS232 TX: "..dataToSend)
+    print("RS232 TX: "..dataToSend) -- Debug
     -- Fake Feedback before confirming it on the Poll
     if string.find(dataToSend, "SH") then
       UpdateSelectFeedback(string.sub(dataToSend, -1))
     end
-  
-    e = connection:Write("data out to serial port")
-  
-  if e then print("error:"..e) end
+    -- Send Data and continue Polling
+    connection:Write("data out to serial port")
     PollTimerInitialize()
   end
   
