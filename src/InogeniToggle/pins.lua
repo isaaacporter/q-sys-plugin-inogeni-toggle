@@ -1,0 +1,1 @@
+table.insert(pins,{Name="Serial Port", Direction="input", Domain="serial"})
