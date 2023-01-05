@@ -49,7 +49,7 @@ if CurrentPage == "Main" then
     Position = {230, 45},
     Size = {55, 35}
   })
-  layout["system.fwversion"] = {
+  layout["system_fwversion"] = {
     PrettyName = "Firmware Version",
     Style = "Text",
     FontSize = 22,
@@ -59,7 +59,7 @@ if CurrentPage == "Main" then
     Position = {285, 45},
     Size = {115, 35}
   }
-  layout["select.off"] = {
+  layout["select_off"] = {
     PrettyName = "Select~Off",
     Legend = "Off",
     FontSize = 22,
@@ -72,7 +72,7 @@ if CurrentPage == "Main" then
     Size = {120, 80},
     CornerRadius = 2,
   }
-  layout["select.pc1"] = {
+  layout["select_pc1"] = {
     PrettyName = "Select~PC 1",
     Legend = "PC 1",
     FontSize = 22,
@@ -85,7 +85,7 @@ if CurrentPage == "Main" then
     Size = {120, 80},
     CornerRadius = 2,
   }
-  layout["select.pc2"] = {
+  layout["select_pc2"] = {
     PrettyName = "Select~PC 2",
     Legend = "PC 2",
     FontSize = 22,

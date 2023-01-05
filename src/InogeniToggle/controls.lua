@@ -5,7 +5,7 @@ table.insert(ctrls, {
   PinStyle = "Output"
 })
 table.insert(ctrls, {
-  Name = "select.off",
+  Name = "select_off",
   ControlType = "Button",
   ButtonType = "Toggle",
   Count = 1,
@@ -13,7 +13,7 @@ table.insert(ctrls, {
   PinStyle = "Both",
 })
 table.insert(ctrls, {
-  Name = "select.pc1",
+  Name = "select_pc1",
   ControlType = "Button",
   ButtonType = "Toggle",
   Count = 1,
@@ -21,7 +21,7 @@ table.insert(ctrls, {
   PinStyle = "Both",
 })
 table.insert(ctrls, {
-  Name = "select.pc2",
+  Name = "select_pc2",
   ControlType = "Button",
   ButtonType = "Toggle",
   Count = 1,
@@ -29,7 +29,7 @@ table.insert(ctrls, {
   PinStyle = "Both",
 })
 table.insert(ctrls, {
-  Name = "system.fwversion",
+  Name = "system_fwversion",
   ControlType = "Indicator",
   IndicatorType = "Text",
   Count = 1,

@@ -46,7 +46,7 @@ connection.EventHandler = function(port, msg)
       line = port:ReadLine(SerialPorts.EOL.Null)
       print("RS232 RX: "..line)
       if string.find(line, "FW_VER") then
-        Controls["system.fwversion"].String = string.sub(line, 8)
+        Controls["system_fwversion"].String = string.sub(line, 8)
       elseif tonumber(string.sub(line,1,1)) then
         UpdateSelectFeedback(tonumber(string.sub(line,1,1)))
       end
@@ -98,7 +98,7 @@ end
 
 
 -- Controls
-ControlNames = {"select.off", "select.pc1", "select.pc2"}
+ControlNames = {"select_off", "select_pc1", "select_pc2"}
 for idx,val in ipairs(ControlNames) do
   Controls[val].EventHandler = function()
     SendData("SH "..(idx-1))

@@ -78,7 +78,7 @@ function GetControls(props)
     PinStyle = "Output"
   })
   table.insert(ctrls, {
-    Name = "select.off",
+    Name = "select_off",
     ControlType = "Button",
     ButtonType = "Toggle",
     Count = 1,
@@ -86,7 +86,7 @@ function GetControls(props)
     PinStyle = "Both",
   })
   table.insert(ctrls, {
-    Name = "select.pc1",
+    Name = "select_pc1",
     ControlType = "Button",
     ButtonType = "Toggle",
     Count = 1,
@@ -94,7 +94,7 @@ function GetControls(props)
     PinStyle = "Both",
   })
   table.insert(ctrls, {
-    Name = "select.pc2",
+    Name = "select_pc2",
     ControlType = "Button",
     ButtonType = "Toggle",
     Count = 1,
@@ -102,7 +102,7 @@ function GetControls(props)
     PinStyle = "Both",
   })
   table.insert(ctrls, {
-    Name = "system.fwversion",
+    Name = "system_fwversion",
     ControlType = "Indicator",
     IndicatorType = "Text",
     Count = 1,
@@ -167,7 +167,7 @@ function GetControlLayout(props)
       Position = {230, 45},
       Size = {55, 35}
     })
-    layout["system.fwversion"] = {
+    layout["system_fwversion"] = {
       PrettyName = "Firmware Version",
       Style = "Text",
       FontSize = 22,
@@ -177,7 +177,7 @@ function GetControlLayout(props)
       Position = {285, 45},
       Size = {115, 35}
     }
-    layout["select.off"] = {
+    layout["select_off"] = {
       PrettyName = "Select~Off",
       Legend = "Off",
       FontSize = 22,
@@ -190,7 +190,7 @@ function GetControlLayout(props)
       Size = {120, 80},
       CornerRadius = 2,
     }
-    layout["select.pc1"] = {
+    layout["select_pc1"] = {
       PrettyName = "Select~PC 1",
       Legend = "PC 1",
       FontSize = 22,
@@ -203,7 +203,7 @@ function GetControlLayout(props)
       Size = {120, 80},
       CornerRadius = 2,
     }
-    layout["select.pc2"] = {
+    layout["select_pc2"] = {
       PrettyName = "Select~PC 2",
       Legend = "PC 2",
       FontSize = 22,
@@ -270,7 +270,7 @@ if Controls then
         line = port:ReadLine(SerialPorts.EOL.Null)
         print("RS232 RX: "..line)
         if string.find(line, "FW_VER") then
-          Controls["system.fwversion"].String = string.sub(line, 8)
+          Controls["system_fwversion"].String = string.sub(line, 8)
         elseif tonumber(string.sub(line,1,1)) then
           UpdateSelectFeedback(tonumber(string.sub(line,1,1)))
         end
@@ -322,7 +322,7 @@ if Controls then
   
   
   -- Controls
-  ControlNames = {"select.off", "select.pc1", "select.pc2"}
+  ControlNames = {"select_off", "select_pc1", "select_pc2"}
   for idx,val in ipairs(ControlNames) do
     Controls[val].EventHandler = function()
       SendData("SH "..(idx-1))
