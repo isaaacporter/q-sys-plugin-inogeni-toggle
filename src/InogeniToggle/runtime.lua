@@ -41,15 +41,15 @@ statusUpdater:Start(1)
 connection = SerialPorts[1]
 connection.EventHandler = function(port, msg)
   if msg == SerialPorts.Events.Data then
-    local line = port:ReadLine(SerialPorts.EOL.Null)
+    local line = port:ReadLine(SerialPorts.EOL.CrLf)
     while line ~= nil do
-      line = port:ReadLine(SerialPorts.EOL.Null)
       print("RS232 RX: "..line)
       if string.find(line, "FW_VER") then
         Controls["system_fwversion"].String = string.sub(line, 8)
       elseif tonumber(string.sub(line,1,1)) then
         UpdateSelectFeedback(tonumber(string.sub(line,1,1)))
       end
+      line = port:ReadLine(SerialPorts.EOL.CrLf)
     end
   end
 end
@@ -92,7 +92,7 @@ function SendData(dataToSend)
     UpdateSelectFeedback(string.sub(dataToSend, -1))
   end
   -- Send Data and continue Polling
-  connection:Write("data out to serial port")
+  connection:Write(dataToSend.."\n")
   PollTimerInitialize()
 end
 
