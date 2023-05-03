@@ -2,6 +2,7 @@ table.insert(ctrls, {
   Name = "Status",
   ControlType = "Indicator",
   IndicatorType = "Status",
+  UserPin = true,
   PinStyle = "Output"
 })
 table.insert(ctrls, {
